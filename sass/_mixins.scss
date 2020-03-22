@@ -1,0 +1,36 @@
+@mixin flexCenter($direction){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true){
+    @if $light-theme{
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }   
+}
+
+@mixin mobile{
+    @media(max-width: $mobile){
+        @content;
+    }
+}
+
+@mixin card($card-list){
+    
+    border: map-get($card-list,"border");
+    width: map-get($card-list,"card-width");
+    color: map-get($card-list,"card-color");
+    margin: map-get($card-list,"card-margin");
+    padding: map-get($card-list,"card-padding");
+    background-color: map-get($card-list,"card-background");
+
+    @if(map-get($card-list,"border-radius")){
+        border-radius: map-get($card-list,"border-radius");
+    }@else{
+        @debug "border:"+$card-list[border]+", card-width:"+$card-list[card-width]+", card-color:"+$card-list[card-color];
+    }
+}
+

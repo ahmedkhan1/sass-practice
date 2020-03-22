@@ -1,0 +1,64 @@
+@import './resets';
+@import './variables';
+@import './mixins';
+
+// Functions
+@function weight($weight-name){
+  @return map-get($font-weights, $weight-name)
+}
+
+body{
+    background-color: $primary-color;
+    color:white; 
+}
+
+.main{
+    @include flexCenter(row);
+    width: 100%;
+    margin: 0 auto;
+
+    $card-list : (
+        "border": 1px solid,
+        "card-width": 100%,
+        "card-color": black, 
+        "card-margin": 10px,
+        "card-padding": 20px,
+        "card-background": grey,
+        "border-radius": 20px,
+    );
+
+    #{&}__paragraph1 {
+
+        @include card($card-list);
+        font-weight: weight(regular);  
+        &:hover {
+            color:pink;
+        }
+    }
+
+    #{&}__paragraph2 {
+        // @extend .main__paragraph1;
+
+        @include card($card-list);
+
+        &:hover {
+            color: $accent-color;
+        }
+    }
+    @include mobile{
+        flex-direction: column;
+    }
+}
+
+.light {
+    @include theme($light-theme: true);
+}
+
+.main-content{
+    border: 1px solid;
+    height: 300px;
+    margin: $margin-20;
+    background-color: $primary-color;
+    color: $accent-color;
+    @include flexCenter(row);
+}
